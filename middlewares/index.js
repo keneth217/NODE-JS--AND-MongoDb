@@ -1,5 +1,5 @@
 const ObjectId = require("mongoose").Types.ObjectId;
-const validateDbId =(req,re,next)=>{
+const validateDbId =(req,res,next)=>{
     if (ObjectId.isValid(req.params.id) == false)
     res.status(400).json({
       error: `given object id (${req.params.id}) is not valid`
