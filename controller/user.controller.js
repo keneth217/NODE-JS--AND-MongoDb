@@ -45,7 +45,10 @@ router.put('/:id',validateDbId,(req,res)=>{
 router.delete('/:id',validateDbId,(req,res,next)=>{
     userCrud.delete(req.params.id)
     .then((data) => {
-        if (data) res.send(data);
+        if (data){
+        console.log("user deleted");
+         res.send(data);
+        }
         else
         notFound(req,res)
       })
