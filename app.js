@@ -1,5 +1,6 @@
 const express=require("express");
 const bodyParser=require('body-parser');
+require("dotenv").config();
 //local imports
 const connectDb= require('./db')
 const  userRoutes=require("./controller/user.controller")
@@ -13,7 +14,11 @@ app.use(bodyParser.json());
 app.use('/kenwaves/api/v1/users',userRoutes)
 app.use(errorHandler)
 
+
+const port=process.env.PORT
+
 connectDb().then(()=>{
     console.log('mongo db connecteed succesfuly');
-    app.listen(3000,()=>console.log("SERVER UP AND RUNNING ON PORT 3000"))
-}).catch(err=>console.log(err))
+    console.log(`MY SERVER IS UP AND RUNNING ON PORT : ${port}`);
+    app.listen(port,()=>console.log("SERVER UP AND RUNNING ON PORT ",process.env.PORT))
+})
